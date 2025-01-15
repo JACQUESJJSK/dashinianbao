@@ -1,5 +1,10 @@
 // 初始化事件数组
-let events = [];
+let events = JSON.parse(localStorage.getItem('events') || '[]');
+
+// 页面加载时渲染已有事件
+window.addEventListener('load', () => {
+  renderEvents();
+});
 
 // 获取DOM元素
 const eventDate = document.getElementById('event-date');
@@ -25,6 +30,9 @@ addEventBtn.addEventListener('click', () => {
   
   // 按日期排序
   events.sort((a, b) => new Date(a.date) - new Date(b.date));
+  
+  // 保存到localStorage
+  localStorage.setItem('events', JSON.stringify(events));
   
   // 更新显示
   renderEvents();
