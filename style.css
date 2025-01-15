@@ -1,0 +1,80 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.input-fields {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-fields input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.input-fields button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.events-list {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.header-row {
+  display: flex;
+  background-color: #f5f5f5;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.header-row div {
+  flex: 1;
+  text-align: center;
+}
+
+.event-row {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.event-row div {
+  flex: 1;
+  text-align: center;
+}
+
+#export-csv {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}

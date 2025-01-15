@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大事记生成器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>大事记生成器</h1>
+    <div class="input-fields">
+      <input type="date" id="event-date" placeholder="事件日期">
+      <input type="text" id="event-content" placeholder="事件内容">
+      <input type="text" id="event-person" placeholder="人物">
+      <button id="add-event">添加事件</button>
+    </div>
+    <div class="events-list">
+      <div class="header-row">
+        <div>日期</div>
+        <div>事件内容</div>
+        <div>人物</div>
+      </div>
+    </div>
+    <button id="export-csv">导出为CSV</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
