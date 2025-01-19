@@ -1,9 +1,16 @@
 // 初始化事件数组
-let events = JSON.parse(localStorage.getItem('events') || '[]');
+let events = [];
 
 // 页面加载时渲染已有事件
 window.addEventListener('load', () => {
-  renderEvents();
+  // 尝试从localStorage读取
+  try {
+    events = JSON.parse(localStorage.getItem('events') || '[]');
+    renderEvents();
+  } catch (error) {
+    console.error('读取localStorage失败:', error);
+    alert('无法读取本地存储，请检查浏览器设置');
+  }
 });
 
 // 获取DOM元素
@@ -13,6 +20,20 @@ const eventPerson = document.getElementById('event-person');
 const addEventBtn = document.getElementById('add-event');
 const exportCsvBtn = document.getElementById('export-csv');
 const eventsList = document.querySelector('.events-list');
+
+// 删除单条数据
+function deleteEvent(index) {
+  if (confirm('确定要删除这条记录吗？')) {
+    events.splice(index, 1);
+    try {
+      localStorage.setItem('events', JSON.stringify(events));
+      renderEvents();
+    } catch (error) {
+      console.error('删除数据失败:', error);
+      alert('删除数据失败，请检查浏览器设置');
+    }
+  }
+}
 
 // 添加事件
 addEventBtn.addEventListener('click', () => {
@@ -32,7 +53,12 @@ addEventBtn.addEventListener('click', () => {
   events.sort((a, b) => new Date(a.date) - new Date(b.date));
   
   // 保存到localStorage
-  localStorage.setItem('events', JSON.stringify(events));
+  try {
+    localStorage.setItem('events', JSON.stringify(events));
+  } catch (error) {
+    console.error('保存到localStorage失败:', error);
+    alert('无法保存数据到本地存储，请检查浏览器设置');
+  }
   
   // 更新显示
   renderEvents();
@@ -78,13 +104,14 @@ function renderEvents() {
   `;
 
   // 添加每个事件
-  events.forEach(event => {
+  events.forEach((event, index) => {
     const eventRow = document.createElement('div');
     eventRow.className = 'event-row';
     eventRow.innerHTML = `
       <div>${event.date}</div>
       <div>${event.content}</div>
       <div>${event.person}</div>
+      <div><button class="delete-btn" onclick="deleteEvent(${index})">删除</button></div>
     `;
     eventsList.appendChild(eventRow);
   });
